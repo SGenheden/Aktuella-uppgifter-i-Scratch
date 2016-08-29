@@ -1,0 +1,489 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head><body>
+<h1 id="gamle-orm">Gamle orm</h1>
+<p>I denna uppgift ska du få koda en enkel prototyp till det klassiska spelet Snake. Du kanske har spelat en modern variant som <a href="http://slither.io/" _target="blank">slither.io</a>. Du kommer inte få koda ett lika häftigt spel där du kan röra dig fritt på skärmen eller spela mot flera olika spelare, istället kommer du få skapa ett spel så som det såg ut på mobiltelefoner i början av 2000-talet. Fokus kommer ligga på att förstå spelmekaniken, det vill säga hur spelet fungerar. För även om det är en ganska enkel logik kan det vara lite klurigt att förstå hur du ska koda det på ett bra sätt.</p>
+<p><img src="image_0.png" alt="image alt text"></p>
+<p>Här kan du spela två exempel:</p>
+<ul>
+<li><p><a href="https://scratch.mit.edu/projects/117494647" target="_blank">Exempel 1</a></p>
+</li>
+<li><p><a href="https://scratch.mit.edu/projects/119405480/" target="_blank">Exempel 2</a></p>
+</li>
+</ul>
+<h2 id="delmoment-1-en-bit-av-ormen">Delmoment 1: En bit av ormen</h2>
+<p>Du ska få börja med att skapa den sprajten som ormen är uppbyggd av. Du behöver bara rita en väldigt enkel sprajt som du sedan kommer kopiera genom att skapa KLONER.</p>
+<ol>
+<li><p>Skapa ett nytt projekt och ta bort katten.</p>
+</li>
+<li><p><strong>Rita en ny sprajt</strong>. Använd <strong>penseln</strong> och <strong>färgburken</strong> för att rita en <strong>fylld fyrkant</strong> som är precis <strong>24 x 24 pixlar</strong>.</p>
+<ul>
+<li><p>Använd <strong>förstoringsglaset</strong> för att zooma in: <img src="image_1.png" alt="image alt text"></p>
+</li>
+<li><p>Varje grå och vit ruta i ritytan är 3 x 3 pixlar, så du ska rita en fyrkant som är <strong>6 x 6 rutor</strong>.</p>
+</li>
+<li><p>Se till att fyrkanten är precis i <strong>centrum av sprajten</strong>.</p>
+</li>
+</ul>
+<p><img src="image_2b.png" alt="image alt text"></p>
+<ul>
+<li>Använd <strong>penseln</strong> för att rita en fyrkant som <strong>INTE är ifylld</strong> så att du ser att den är precis i mitten av ritytan. (Rektangelverktyg fungerar inte riktigt bra.)</li>
+</ul>
+<p><img src="image_3.png" alt="image alt text"></p>
+<ul>
+<li>Använd sedan <strong>färgburken</strong> för att fylla i fyrkanten</li>
+</ul>
+<p><img src="image_4.png" alt="image alt text"></p>
+<ul>
+<li><p>Du får välja färg själv!</p>
+</li>
+<li><p>Du kan se hur stor sprajten är genom att titta på klädsel-rutan:</p>
+</li>
+</ul>
+<p><img src="image_5.png" alt="image alt text"></p>
+<p><em>Så här ska klädsel-rutan se ut. 24 x 24 anger storleken på klädseln.</em></p>
+</li>
+<li><p>Namnge sprajten <strong>orm</strong>.</p>
+</li>
+</ol>
+<blockquote>
+<p>Det kommer bli klart snart varför det är så viktigt hur stor sprajten är.</p>
+</blockquote>
+<h2 id="delmoment-2-spelmekaniken">Delmoment 2: Spelmekaniken</h2>
+<p>I det här delmomentet är målet att du ska förstå hur spelet kommer fungera. Det blir inget kodande, utan istället mycket läsande så du kan förstå vad du kommer att koda senare.</p>
+<ul>
+<li><p>Ormen kommer bestå av flera kopior av den sprajt som du gjorde i delmoment 1. Så här kommer till exempel ormen se ut i början av spelet när den bara består av 3 delar.</p>
+<p><img src="image_6.png" alt="image alt text"></p>
+</li>
+<li><p>Ormen kommer röra sig på skärmen som om det fanns ett rutnät på scenen. För att du enklare ska förstå hur ormen rör sig kommer rutnätet vara utritat i detta delmoment, men det är bara ett hjälpmedel.</p>
+<p><img src="image_7.png" alt="image alt text"></p>
+</li>
+<li><p>Varje ruta i rutnätet är 24 x 24 pixlar stor. Det är precis så stor sprajten <strong>orm</strong> är, och därför var det så viktigt att du var noga med hur stor du ritade sprajten.</p>
+</li>
+<li><p>Tänk dig nu att ormen består av tre delar och ska röra sig åt höger på skärmen.</p>
+<p> FÖRE: <img src="image_9.png" alt="image alt text"> EFTER:  <img src="image_8.png" alt="image alt text"></p>
+</li>
+<li><p>Det är då lätt att tänka att du gör det genom att</p>
+<ol>
+<li>Flyttar första delen ett steg åt höger</li>
+</ol>
+<p><img src="image_10.png" alt="image alt text"></p>
+<ol>
+<li>Flytta andra delen ett steg åt höger</li>
+</ol>
+<p><img src="image_11.png" alt="image alt text"></p>
+<ol>
+<li>Flytta tredje delen ett steg åt höger</li>
+</ol>
+<p><img src="image_12.png" alt="image alt text"></p>
+</li>
+<li><p>Det är inte så det här spelet kommer fungera, och det är helt enkelt för att det finns en mycket enklare lösning:</p>
+<ol>
+<li><p>Lägg till en del längst fram på ormen, genom att skapa en nya KLON av sprajten</p>
+<p><img src="image_13.png" alt="image alt text"></p>
+</li>
+<li><p>Radera KLONEN som är längst bak på ormen.</p>
+<p><img src="image_14.png" alt="image alt text"></p>
+</li>
+</ol>
+</li>
+</ul>
+<p>Det fiffiga är att du behöver göra samma procedur oberoende hur lång ormen är. För att göra den andra lösningen behöver du flytta lika många delar som ormen består av. Om ormen är 100 delar lång, behöver du flytta 100 kloner! Då är det bättre att skapa en ny och ta bort en annan.</p>
+<ul>
+<li><p>Denna lösning fungerar också utmärkt när du vill styra ormen i en annan riktning med hjälp av piltangenterna. Det ändå du då måste hålla koll på är var du ska placera den nya klonen.</p>
+<p><img src="image_15.png" alt="image alt text"> <em>Ormen går uppåt</em></p>
+<p><img src="image_16.png" alt="image alt text"> <em>Ormen går nedåt</em></p>
+</li>
+</ul>
+<ul>
+<li><p>För att kunna hålla reda på vilken klon som är längst fram och vilken som är längst bak behöver du använda dig av en LOKAL variabel. En LOKAL variabel är som en privat byrålåda som bara kan ses av en sprajt eller en klon. Tänk på den som ett ID-nummer för klonen.</p>
+</li>
+<li><p>Klonen längst fram i ormen kommer ha ID-numret 1, och klonen längst bak kommer ha ett ID-nummer som är lika med längden på ormen.</p>
+<p><img src="image_17.png" alt="image alt text"></p>
+</li>
+<li><p>När ormen rör sig frammåt kommer du behöva uppdatera ID-nummret på klonerna. Den klonen som var &quot;först&quot; kommer ju efter ormen har rört sig vara den &quot;andra&quot; klonen.</p>
+<p><img src="image_18.png" alt="image alt text"></p>
+</li>
+</ul>
+<blockquote>
+<p>Nu bör du förstå tillräckligt mycket av spelmekaniken för att förstå koden du ska skapa.</p>
+</blockquote>
+<h2 id="delmoment-3-starta-spelet">Delmoment 3: Starta spelet</h2>
+<p>I detta delmoment ska du få skapa ett INIT-skript som skapar en orm som är tre delar lång.</p>
+<p>Mycket av spelet kommer styras från ett skript för scenen, så se till att <strong>markera scenen</strong> så du kan skapa kod för den.</p>
+<ol>
+<li><p>Skapa en <strong>variabel</strong> som heter <strong>”antal block”</strong>. Det är den som kommer hålla reda på hur många kloner av sprajten <strong>orm</strong> som har skapats.</p>
+</li>
+<li><p>Skapa <strong>två variabler</strong> som heter <strong>”hx”</strong> och <strong>”hy”</strong>. Dessa två variabler kommer hålla reda på var en ny klon av <strong>orm</strong> kommer placeras, dvs var huvudet kommer att placeras. Dessa behöver inte visas på skärmen.</p>
+</li>
+<li><p><strong>Skapa ett nytt block</strong> som du kallar <strong>”initiera orm”</strong>. Du hittar knappen för att skapa nya block under fliken FLER BLOCK.</p>
+<p><img src="image_19.png" alt="image alt text">
+<em>Här hittar du knappen för att skapa ett nytt block</em></p>
+<p>Detta block kommer sköta alla INITIERING. Egentligen behöver vi inte ett block eftersom koden bara kommer köras en gång. Men skriptet för scenen kommer bli väldigt långt, så genom att skapa detta block blir koden lättare att läsa.</p>
+</li>
+<li><p>På skriptytan har det nu dykt upp ett block som det står <strong>”definiera (initiera orm)”</strong> på. <img src="image_20.png" alt="image alt text"> Fortsätta på detta skript:</p>
+<ul>
+<li><p><strong>Sätt ”hy”</strong> till <strong>0</strong></p>
+</li>
+<li><p><strong>Sätt ”hx”</strong> till <strong>-228</strong></p>
+</li>
+<li><p><strong>Sätt ”antal block”</strong> till <strong>0</strong></p>
+</li>
+<li><p><strong>Repetera 3</strong> gånger:</p>
+</li>
+<li><p><strong>Ändra ”antal block”</strong> med <strong>1</strong></p>
+</li>
+<li><p><strong>Ändra ”hx”</strong> med <strong>24</strong></p>
+</li>
+<li><p><strong>Skicka</strong> meddelandet <strong>”uppdatera”</strong></p>
+</li>
+<li><p><strong>Skapa klon</strong> av <strong>orm</strong></p>
+</li>
+</ul>
+<p>Startvärdena på <strong>”hy”</strong> och <strong>”hx”</strong> ser till att ormen hamnar i rutsystemet som visades i Delmoment 2. Sedan så skapas 3 kloner av orm och varje ny klon kommer placeras lite längre till höger eftersom <strong>”hx”</strong> ökar.</p>
+<p><strong>Tips:</strong> Om du vill börja spelet med fler än 3 delar så ändra antalet repetitioner.</p>
+<p><img src="image_21.png" alt="image alt text">
+<em>Dessa block behöver du för DEFINITIONEN av <strong>initiera orm</strong></em></p>
+</li>
+<li><p>Skapa ett <strong>skript för scenen</strong> som säger:</p>
+<ul>
+<li><p>Startar när START klickas på</p>
+</li>
+<li><p><strong>initiera orm</strong>. Du hittar blocket under fliken FLER BLOCK.</p>
+</li>
+</ul>
+<p><img src="image_22.png" alt="image alt text"></p>
+</li>
+</ol>
+<p>Nu är det dags att koda lite för ormen:</p>
+<ol>
+<li><p>Gå till ormens skript och <strong>skapa en LOKAL variabel</strong> som heter <strong>&quot;id&quot;</strong>. Var noga med att skapa denna variabel <em>enbart för denna sprajt</em>.</p>
+<p><img src="image_23.png" alt="image alt text"></p>
+<p><em>Se till att du kryssar i &quot;enbart för denna sprajt&quot;</em></p>
+</li>
+<li><p>Skapa ett <strong>skript för ormen</strong> som säger</p>
+<ul>
+<li><p>Startar när START klickas på</p>
+</li>
+<li><p><strong>Göm</strong> sprajten</p>
+</li>
+</ul>
+</li>
+<li><p>Skapa ett till <strong>skript för ormen</strong> som säger:</p>
+<ul>
+<li><p>När jag <strong>startar som klon</strong></p>
+</li>
+<li><p><strong>Sätt ”id”</strong> till <strong>1</strong></p>
+</li>
+<li><p><strong>Gå till</strong> x: <strong>”hx”</strong> y: <strong>”hy”</strong></p>
+</li>
+<li><p><strong>Visa</strong> sprajten</p>
+</li>
+</ul>
+</li>
+<li><p>Skapa ett tredje <strong>skript för ormen</strong> som säger:</p>
+<ul>
+<li><p>När meddelandet <strong>”uppdatera” tas emot</strong></p>
+</li>
+<li><p><strong>Ändra ”id”</strong> med <strong>1</strong></p>
+</li>
+</ul>
+<p><img src="image_24.png" alt="image alt text"></p>
+<p><em>Dessa block behöver du för ormens skript</em></p>
+</li>
+</ol>
+<blockquote>
+<p>Klicka på START! Visas en orm på skärmen som är tre delar lång?</p>
+</blockquote>
+<h2 id="delmoment-4-ormen-r-r-sig">Delmoment 4: Ormen rör sig</h2>
+<p>Nu är det dags att få ormen att rör på sig. Kommer du ihåg hur det skulle gå till från Delmoment 2? 1. lägg till en ny klon längst fram och 2. radera klonen längst bak.</p>
+<ol>
+<li><p>Gå till <strong>skriptet för scenen</strong> och placera en <strong>”för alltid”</strong>-loop efter <strong>”initiera orm”</strong>-blocket.</p>
+<p><img src="image_25.png" alt="image alt text"></p>
+</li>
+<li><p>Inuti loopen skapar du följande kod:</p>
+<ul>
+<li><p><strong>Vänta 0.5</strong> sekunder</p>
+</li>
+<li><p><strong>Ändra ”hx”</strong> med <strong>24</strong></p>
+</li>
+<li><p><strong>Skicka</strong> meddelandet <strong>”uppdatera”</strong> <em>och vänta</em>. Det är viktigt att vänta här så att alla kloner hinner uppdatera sitt <strong>id</strong> innan programmet kör nästa block.</p>
+</li>
+<li><p><strong>Skapa klon</strong> av <strong>orm</strong></p>
+</li>
+<li><p><strong>Skicka</strong> meddelandet <strong>”radera”</strong> <em>och vänta</em>.</p>
+</li>
+</ul>
+<p><strong>Tips:</strong> Om du tycker ormen rör sig för snabbt eller för långsamt kan du ändra antalet sekunder i <strong>vänta</strong>-blocket.</p>
+</li>
+<li><p>Skapa ett nytt <strong>skript för orm</strong> som säger:</p>
+<ul>
+<li><p>När meddelandet <strong>”radera” tas emot</strong></p>
+</li>
+<li><p><strong>Radera klon</strong> OM <strong>”id”</strong> &gt; <strong>”antal block”</strong></p>
+</li>
+</ul>
+<p>Eftersom meddelandet <strong>&quot;uppdatera&quot;</strong> skickas innan <strong>&quot;radera&quot;</strong> kommer klonen längst bak ha ett <strong>id</strong> som är större än antalet block.</p>
+</li>
+</ol>
+<blockquote>
+<p>Testa spelet! Rör sig ormen framåt åt höger?</p>
+</blockquote>
+<p><img src="image_26.png" alt="image alt text"></p>
+<p><em>Dessa block behöver du för punkt 2 och 3. Tänk på att vissa ska användas för <strong>scenen</strong> och andra för <strong>orm</strong></em></p>
+<h2 id="delmoment-5-styr-ormen">Delmoment 5: Styr ormen</h2>
+<p>Nu är det dags att få ormen att röra sig på skärmen när du trycker på piltangenterna. Du ska också få koda så att det blir Game Over om ormen åker in i väggen.</p>
+<ol>
+<li><p>Skapa en <strong>variabel</strong> som heter <strong>”riktning”</strong> och som inte behöver visas på skärmen.</p>
+<p>Den här variabeln kommer hålla reda på i vilken riktning som ormen rör sig och kan anta värdena <strong>”höger”</strong>, <strong>”vänster”</strong>, <strong>”uppåt”</strong> eller <strong>”neråt”</strong></p>
+</li>
+<li><p><strong>Sätt ”riktning”</strong> till <strong>”höger”</strong> i <em>början av spelet</em>. Gör det genom att lägga blocket i början på <strong>definitionen av ”initiera orm”</strong>.</p>
+<p><img src="image_27.png" alt="image alt text"></p>
+</li>
+<li><p>Skapa en <strong>variabel</strong> som heter <strong>”tangent”</strong> och som inte behöver visas på skärmen. Den här variabel kommer hålla reda på <em>vilken piltangent som var nedtryckt senast</em>.</p>
+</li>
+<li><p><strong>Sätt ”tangent”</strong> till <strong>”höger”</strong> i <em>början av spelet</em>.</p>
+</li>
+<li><p>Skapa ett nytt skript för <strong>scenen</strong> som säger</p>
+<ul>
+<li><p>När <strong>”uppåtpil” trycks ned</strong></p>
+</li>
+<li><p><strong>Sätt ”tangent”</strong> till <strong>”uppåt”</strong> OM <strong>”riktning”</strong> INTE ÄR <strong>”nedåt”</strong>.</p>
+</li>
+</ul>
+<p><img src="image_28.png" alt="image alt text"></p>
+<p>OM-blocket är nödvändigt så att ormen inte kan byta till en riktning som är tvärtemot den riktningen ormen har. När ormen åker uppåt ska den inte kunna byta och åka nedåt, och tvärtom. När den åker  åt höger ska den inte kunna byta och åka till vänster, och tvärtom.</p>
+</li>
+<li><p><strong>Skapa tre</strong> liknande <strong>skript</strong> för när <strong>”nedåtpil”</strong>, <strong>”högerpil”</strong> och <strong>”vänsterpil” trycks ned</strong>.</p>
+</li>
+<li><p><strong>Ändra villkoret</strong> i <strong>OM</strong>-blocket och <strong>värdet</strong> du sätter <strong>”tangent”</strong> till.</p>
+</li>
+<li><p>I <strong>”för alltid”</strong>-loopen lade du förut ett <strong>”ändra hx med 24”</strong>-block. <strong>Ersätt det blocket</strong> med ett <strong>nytt block</strong> som du kallar <strong>”placera huvud”</strong>.</p>
+<p><img src="image_29.png" alt="image alt text"></p>
+</li>
+<li><p>I <strong>definitionen för ”placera huvud&quot;</strong> lägger du följande skript:</p>
+<ul>
+<li><p>OM <strong>”tangent”</strong> = <strong>”höger”</strong> : <strong>Ändra ”hx”</strong> med <strong>24</strong></p>
+</li>
+<li><p>ANNARS:</p>
+</li>
+<li><p>OM <strong>”tangent”</strong> = <strong>”vänster”</strong>: <strong>Ändra ”hx”</strong> med <strong>-24</strong></p>
+</li>
+<li><p>ANNARS:</p>
+</li>
+<li><p>OM <strong>”tangent”</strong> = <strong>”uppåt”</strong>: <strong>Ändra ”hy”</strong> med <strong>24</strong></p>
+</li>
+<li><p>ANNARS : <strong>Ändra ”hy”</strong> med <strong>-24</strong></p>
+</li>
+<li><p><strong>Sätt ”riktning”</strong> till <strong>”tangent”</strong></p>
+</li>
+</ul>
+<p><img src="image_30.png" alt="image alt text"></p>
+<p><em>Dessa block behöver du för punkt 9. Tänk på att vissa block behöver du använda mer än en gång.</em></p>
+</li>
+</ol>
+<blockquote>
+<p>Testa spelet! Kan du styra ormen med piltangenterna?</p>
+</blockquote>
+<p>Nu kan ormen åka utanför scenen, vilket inte är bra. Därför ska spelet sluta när ormen åker in i väggen.</p>
+<ol>
+<li><p>Fortsätt på <strong>definitionen för &quot;placera huvud&quot;</strong> med följande skript</p>
+<ul>
+<li><p>OM <strong>”hx” &lt; -228</strong> ELLER <strong>”hx” &gt; 228</strong> ELLER <strong>”hy” &lt; -168</strong> ELLER <strong>”hy” &gt; 168</strong></p>
+</li>
+<li><p><strong>Skicka</strong> meddelandet <strong>”game over”</strong> <em>och vänta</em></p>
+</li>
+<li><p><strong>Stoppa alla</strong> skript</p>
+</li>
+</ul>
+</li>
+<li><p>Skapa ett nytt <strong>skript</strong> för <strong>ormen</strong> som säger:</p>
+<ul>
+<li><p>När jag <strong>tar emot ”game over”</strong></p>
+</li>
+<li><p><strong>Säg</strong> <em>”Neeej!”</em> i 2 sek OM <strong>”id”</strong> = 1</p>
+</li>
+</ul>
+<p><img src="image_31.png" alt="image alt text"></p>
+<p><em>Dessa block behöver du för koden ovan. Tänk på att vissa block behövs för <strong>scenen</strong> och andra för <strong>ormen</strong></em></p>
+</li>
+</ol>
+<blockquote>
+<p>Testa spelet igen! Vad händer om du åker in i kanten på scenen?</p>
+</blockquote>
+<h2 id="delmoment-6-mat">Delmoment 6: Mat</h2>
+<p>Det som fattas i spelet är mat, vilket ormen ska äta för att bli längre. Nu ska du få koda det. Maten ska vara i form av runda kulor som placeras ut slumpmässigt på skärmen.</p>
+<ol>
+<li><p><strong>Rita en ny sprajt</strong>. Använd <strong>cirkelverktyget</strong> för att rita en <strong>ifylld cirkel</strong> som är cirka <strong>16 x 16</strong> pixlar stor.</p>
+<ul>
+<li><p>Använd <strong>förstoringsglaset</strong> för att <strong>zooma</strong> in</p>
+</li>
+<li><p><strong>Rita en cirkel</strong> som är ungefär <strong>4 x 4 rutor</strong></p>
+</li>
+<li><p>Se till att cirkeln är precis i <strong>centrum av sprajten</strong></p>
+</li>
+<li><p>Du får välja färg själv!</p>
+</li>
+</ul>
+<p><img src="image_32.png" alt="image alt text"></p>
+<p><em>Ungefär så här ska sprajten se ut när du ritat den. Korset visar centrum för sprajten</em></p>
+</li>
+<li><p><strong>Namnge</strong> sprajten <strong>mat</strong></p>
+<p><img src="image_33.png" alt="image alt text"></p>
+</li>
+</ol>
+<p>Nu är det dags att placera ut maten på skärmen. Detta ska göras från <strong>”för alltid”</strong>-loopen i skriptet för <strong>scenen</strong>, där koden för att flytta ormen också finns.</p>
+<ul>
+<li><p>Om du skulle lägga in ett <strong>”skapa klon av”</strong>-block direkt i loopen skulle en kula mat dyka upp varje gång ormen rör på sig. Då skulle det bli väldigt mycket mat och skärmen skulle ganska fort bli full.</p>
+</li>
+<li><p>I stället så ska du bara placera ut <strong>mat var 10:e gång</strong> du flyttar ormen. Det kan du göra genom att använda en <strong>variabel</strong> och ett <strong>OM</strong>-block.</p>
+</li>
+</ul>
+<p>Gå till scenen så att du ser koden du skapade tidigare</p>
+<ol>
+<li><p>Skapa en <strong>variabel</strong> som heter <strong>”ny mat”</strong> som inte behöver visa på skärmen.</p>
+</li>
+<li><p><strong>Sätt ”ny mat”</strong> till <strong>0</strong> i <em>början av spelet</em>. (Använd <strong>definitionen av ”initiera orm”</strong>).</p>
+</li>
+<li><p><strong>Sist</strong> i <strong>”för alltid”</strong>-loopen lägger du ett <strong>nytt block</strong> som heter <strong>”skapa mat”</strong></p>
+<p><img src="image_34.png" alt="image alt text"></p>
+</li>
+<li><p>I <strong>definitionen för ”skapa mat”</strong> lägger du följande skript:</p>
+<ul>
+<li><p><strong>Ändra ”ny mat”</strong> med <strong>1</strong></p>
+</li>
+<li><p>OM <strong>”ny mat” = 10</strong>:</p>
+</li>
+<li><p><strong>Sätt ”ny mat”</strong> till <strong>0</strong></p>
+</li>
+<li><p><strong>Skapa klon</strong> av sprajten <strong>mat</strong></p>
+</li>
+</ul>
+<p><strong>Tips:</strong> Om du vill att det ska skapas mat oftare kan du ändra 10 till ett lägre tal.</p>
+<p><img src="image_35.png" alt="image alt text"></p>
+<p><em>Dessa block behöver du för definitionen av &quot;skapa mat&quot;</em></p>
+</li>
+<li><p>Skapa ett <strong>skript</strong> för <strong>mat</strong> som säger:</p>
+<ul>
+<li><p>När START klickas på</p>
+</li>
+<li><p><strong>Göm</strong> sprajten</p>
+</li>
+</ul>
+</li>
+<li><p>Skapa ett andra <strong>skript</strong> för <strong>mat</strong> som säger:</p>
+<ul>
+<li><p>När jag <strong>startar som klon</strong></p>
+</li>
+<li><p><strong>Sätt x</strong> till (24 * slumptal mellan 0 och 19) - 228</p>
+</li>
+<li><p><strong>Sätt y</strong> till (24 * slumptal mellan 0 och 14) - 168</p>
+</li>
+<li><p><strong>Visa</strong> sprajten</p>
+</li>
+</ul>
+<p><img src="image_36.png" alt="image alt text"></p>
+<p><em>Så här bör koden ovan se ut</em></p>
+</li>
+</ol>
+<p>Scenen är 480 pixlar bred och 360 pixlar hög, vilket gör att det får plats 20 delar av ormen på bredden och 15 delar på höjden (räkna efter antalet rutor i rutsystemet som visades i Delmoment 2 om du vill kolla!). Därför skapar koden ett slumptal mellan 0 och 19, vilket väljer en av rutorna på bredden. Genom att multiplicera 24 och sedan dra ifrån 228 ser koden till att maten hamnar i mitten av varje ruta. Samma logik används för att placera ut maten på höjden.</p>
+<blockquote>
+<p>Testa koden! Placeras det ut mat i mitten på scenen?</p>
+</blockquote>
+<p>Nu kan det hända att en klon av mat placeras ut där ormen är, vilket är fel. Mat ska bara placeras ut på tomma rutor. Det ska du fixa nu.</p>
+<ol>
+<li><p><strong>Fortsätt</strong> på koden som körs <strong>när mat startar som klon</strong>:</p>
+<ul>
+<li><p>OM <strong>rör</strong> sprajten <strong>orm</strong></p>
+</li>
+<li><p><strong>Skapa klon</strong> av mig själv</p>
+</li>
+<li><p><strong>Radera klonen</strong></p>
+</li>
+</ul>
+<p><img src="image_37.png" alt="image alt text"></p>
+<p><em>Här ska du placera koden ovan. <strong>&quot;visa&quot;</strong>-blocket skapde du tidigare.</em></p>
+</li>
+</ol>
+<p>Till sist ska du koda så att ormen växer när den äter mat</p>
+<ol>
+<li><p>Skapa en <strong>variabel</strong> som heter <strong>”växa”</strong> som inte behöver visas på skärmen</p>
+</li>
+<li><p><strong>Sätt ”växa”</strong> till <strong>”nej”</strong> i <em>början av spelet</em>.</p>
+</li>
+<li><p><strong>Fortsätt</strong> på koden som körs när <strong>mat startar som klon</strong>:</p>
+<ul>
+<li><p>För alltid:</p>
+</li>
+<li><p>OM <strong>rör</strong> sprajten <strong>orm</strong>:</p>
+</li>
+<li><p><strong>Sätt ”växa”</strong> till <strong>”ja”</strong></p>
+</li>
+<li><p><strong>Radera klonen</strong></p>
+</li>
+</ul>
+<p><img src="image_38.png" alt="image alt text"></p>
+<p><em>Dessa block behöver du för koden. Tänk på att du lägger koden direkt efter OM-blocket du skapade tidigare.</em></p>
+</li>
+<li><p>Gå till <strong>skriptet</strong> för <strong>scenen</strong> och <strong>”för alltid”</strong>-loopen. Ersätt <strong>”skicka radera och vänta”</strong>-blocket med följande kod</p>
+<ul>
+<li><p>OM <strong>”växa” = ”ja”</strong></p>
+</li>
+<li><p><strong>Ändra ”antal block”</strong> med <strong>1</strong></p>
+</li>
+<li><p><strong>Sätt ”växa”</strong> till <strong>”nej”</strong></p>
+</li>
+<li><p>ANNARS:</p>
+</li>
+<li><p><strong>Skicka ”radera”</strong> och <em>vänta</em></p>
+</li>
+</ul>
+<p><img src="image_39.png" alt="image alt text">   </p>
+<p><em>Bilden visar vilken kod du ska byta ut mot koden i punkt 4.</em></p>
+</li>
+</ol>
+<blockquote>
+<p>Testa spelet igen! Blir ormen längre när den äter mat?</p>
+</blockquote>
+<h2 id="f-rdig-">Färdig!</h2>
+<p>Grattis, nu har du gjort klart uppgiften.</p>
+<p><strong>Glöm inte att spara ditt projekt!</strong> Döp det gärna till uppgiftens namn så att du enkelt kan hitta den igen.</p>
+<blockquote>
+<p><strong>Testa ditt projekt</strong><br>  Visa gärna någon det som du har gjort och låt dem testa. Tryck på DELA för att andra ska kunna hitta spelet på Scratch. Gå ut till projektsidan och låt någon annan testa spelet!</p>
+</blockquote>
+<h2 id="utmaningar">Utmaningar</h2>
+<h3 id="kl-dsel-f-r-huvud">Klädsel för huvud</h3>
+<p>För tillfället ser alla delar av ormen likadana ut. Det blir roligare om ormens huvud har ett eget utseende. Det kan du skapa genom att göra en ny klädsel för ormen. Rita till exempel en tunga och ett par ögon.</p>
+<p><strong>Obs!</strong> Se till att huvudet pekar åt höger</p>
+<p><img src="image_40.png" alt="image alt text">  </p>
+<p><em>Så här kan ormhuvudet se ut</em></p>
+<p>Gör sedan två ändringar i scripten för ormen.</p>
+<ol>
+<li><p>När den <strong>startar som klon</strong> ska <strong>klädseln ändras</strong> så att den klonen visar huvudet. Du får också se till att <strong>huvudet pekar i rätt riktning</strong>.</p>
+</li>
+<li><p>När ormen tar emot <strong>&quot;uppdatera&quot;</strong> får du <strong>ändra klädseln</strong> så att klonen visar rätt klädsel.</p>
+</li>
+</ol>
+<h3 id="kollision-med-sig-sj-lv">Kollision med sig själv</h3>
+<p>Se till att det blir Game Over om ormen åker in i sig själv. Då får du skapa en <strong>”för-alltid”</strong> loop när <strong>orm startar som klon</strong> och kolla efter en <strong>kollision med sig själv</strong>.</p>
+<p><strong>Obs!</strong> Du får kolla efter en kollision med hjälp av färg.</p>
+<h3 id="g-igenom-v-ggar">Gå igenom väggar</h3>
+<p>Ett alternativ till att det blir Game Over när ormen åker in i väggen är att ormen kommer ut på motsatt sida av scenen. Om den till exempel åker in i väggen på höger sida kommer huvudet ut på den vänstra sidan av scenen.</p>
+<p><strong>Tips:</strong> Ändra i koden för <strong>definitionen av ”placera huvud”</strong>.</p>
+<h3 id="olika-sorters-mat">Olika sorters mat</h3>
+<p>Du kan skapa mer än en typ av mat genom att rita flera klädslar för sprajten mat. Du kan till exempel koda så att ormen växer med två delar om den äter en röd triangel!</p>
+<p><strong>Tips:</strong> Sätt variabeln <strong>&quot;växa&quot;</strong> inte bara till &quot;ja&quot; eller &quot;nej&quot;.</p>
+<h3 id="snabbare-orm">Snabbare orm</h3>
+<p>Du kan koda så att ormen rör sig snabbare när den blir längre. I <strong>&quot;för alltid&quot;</strong>-loopen ligger en det ett <strong>”vänta”</strong>-block. Skapa en variabel som håller reda på hur länge koden ska vänta i början av loopen. Ändra sedan variabel när ormen har blivit längre.</p>
+<blockquote>
+<p>Du kan titta på ett exempel spel där alla dessa utmaningar är kodade. <a href="https://scratch.mit.edu/projects/119405480/" target="_blank">Gå till spelet.</a></p>
+</blockquote>
+<h2 id="fr-gest-llningar">Frågeställningar</h2>
+<ul>
+<li><p>Vad är en lokal variabel?</p>
+</li>
+<li><p>Hur skapar du ett nytt block?</p>
+</li>
+<li><p>Varför kan det vara bra att skapa ett nytt block?</p>
+</li>
+</ul>
+</body></html>
